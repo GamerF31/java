@@ -1,0 +1,78 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        if(n>100 || n<0){
+            System.out.println("zla wartosc");
+            System.exit(0);
+        }
+
+        int parzysta = 0;
+        int nieparzysta = 0;
+        int dodatnia = 0;
+        int ujemna = 0;
+        int zerowa = 0;
+        int najwieksza = -1000;
+        int wystapienianajw = 0;
+        int sumadod = 0;
+        int sumauje = 0;
+        int dlugoscfragmentu = 0;
+        int najdluzszy = 0;
+        int[] tab;
+        tab = new int[n];
+        for (int i = 0; i < n; i++) {
+            tab[i] = random.nextInt(1999) - 999;
+            System.out.println(tab[i]);
+            if(tab[i]%2==0)
+                parzysta++;
+            else
+                nieparzysta++;
+            if(tab[i]>0){
+                dodatnia++;
+                sumadod = sumadod + tab[i];}
+            else if(tab[i]<0){
+                ujemna++;
+                sumauje = sumauje + tab[i];}
+            else if(tab[i]==0){
+                zerowa++;}
+            if(tab[i]>najwieksza){
+                najwieksza = tab[i];
+                wystapienianajw = 1;}
+            else if(najwieksza == tab[i]){
+                wystapienianajw++;}
+            if(tab[i]>0)
+                dlugoscfragmentu++;
+            else{
+                if(dlugoscfragmentu > najdluzszy)
+                    najdluzszy = dlugoscfragmentu;
+                dlugoscfragmentu = 0;
+            }
+            if(tab[i]>0){
+                tab[i]=1;}
+            else{
+                tab[i]=-1;}
+
+        }
+        System.out.println("ile parzystych: " + parzysta);
+        System.out.println("ile nieparzystych: " + nieparzysta);
+        System.out.println("ile dodatnich: " + dodatnia);
+        System.out.println("ile ujemnych: " + ujemna);
+        System.out.println("ile zerowych: " + zerowa);
+        System.out.println("najwieksza: " + najwieksza);
+        System.out.println("ile najwiekszych: " + wystapienianajw);
+        System.out.println("Suma dodatnich wynosi: " + sumadod);
+        System.out.println("Suma ujemnych wynosi: " + sumauje);
+        System.out.println("Dlugosc fragmentu wynosi: " + dlugoscfragmentu);
+
+
+
+
+        for (int i=0;i<n;i++)
+            System.out.println(tab[i]);
+
+    }
+}
